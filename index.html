@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List — LKP 3A</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>To-Do List</h1>
+      <p class="subtitle">Kelola daftar tugas harianmu dengan rapi</p>
+    </header>
+
+    <!-- Form Tambah Tugas -->
+    <form id="form-todo" class="todo-form" autocomplete="off">
+      <input
+        type="text"
+        id="input-todo"
+        placeholder="Tulis tugas baru..."
+        aria-label="Tulis tugas baru"
+        required
+      >
+      <button type="submit" class="btn-primary">Tambah</button>
+    </form>
+
+    <!-- Progress Bar (Garis Loading Penyelesaian) -->
+    <section class="progress-section" aria-label="Progres penyelesaian tugas">
+      <div class="progress-info">
+        <span id="stats">0 tugas belum selesai</span>
+        <span id="progress-percent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+    </section>
+
+    <!-- Filter Tugas -->
+    <nav class="filter-bar" aria-label="Filter tugas">
+      <button type="button" class="filter-btn active" data-filter="semua">Semua</button>
+      <button type="button" class="filter-btn" data-filter="aktif">Aktif</button>
+      <button type="button" class="filter-btn" data-filter="selesai">Selesai</button>
+    </nav>
+
+    <!-- Daftar Tugas -->
+    <ul id="list-todo" class="todo-list"></ul>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

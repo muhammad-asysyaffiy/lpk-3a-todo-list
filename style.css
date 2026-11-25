@@ -1,0 +1,323 @@
+:root {
+  /* 60% Putih / Permukaan Terang */
+  --bg-surface: #f2f4f8;
+  --white-pure: #ffffff;
+
+  /* 30% Abu-abu (Teks, Border, Shadow Neumorphism) */
+  --gray-text-dark: #3a4252;
+  --gray-text-muted: #7a8599;
+  --gray-shadow-dark: #d1d8e4;
+  --gray-border: #e1e6ef;
+
+  /* 10% Aksen Biru */
+  --accent-blue: #0088ff;
+  --accent-blue-hover: #0070d6;
+
+  /* Status Hapus */
+  --danger-text: #d94b4b;
+
+  /* Neumorphism Shadows */
+  --neu-out: 8px 8px 16px var(--gray-shadow-dark),
+             -8px -8px 16px var(--white-pure);
+  --neu-out-sm: 4px 4px 8px var(--gray-shadow-dark),
+                -4px -4px 8px var(--white-pure);
+  --neu-in: inset 4px 4px 8px var(--gray-shadow-dark),
+            inset -4px -4px 8px var(--white-pure);
+  --neu-in-sm: inset 2px 2px 5px var(--gray-shadow-dark),
+               inset -2px -2px 5px var(--white-pure);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-surface);
+  color: var(--gray-text-dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+}
+
+.app {
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--bg-surface);
+  padding: 32px 28px;
+  border-radius: 24px;
+  box-shadow: var(--neu-out);
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gray-text-dark);
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--gray-text-muted);
+  margin-top: 4px;
+}
+
+/* Form Input */
+.todo-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.todo-form input[type="text"] {
+  flex: 1;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 14px;
+  background-color: var(--bg-surface);
+  box-shadow: var(--neu-in);
+  color: var(--gray-text-dark);
+  font-size: 0.95rem;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.todo-form input[type="text"]::placeholder {
+  color: var(--gray-text-muted);
+}
+
+.todo-form input[type="text"]:focus {
+  box-shadow: var(--neu-in), 0 0 0 2px rgba(0, 136, 255, 0.25);
+}
+
+.btn-primary {
+  padding: 13px 20px;
+  border: none;
+  border-radius: 14px;
+  background-color: var(--accent-blue);
+  color: var(--white-pure);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 4px 4px 10px rgba(0, 136, 255, 0.28),
+              -4px -4px 10px var(--white-pure);
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-blue-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* Progress Bar / Garis Loading */
+.progress-section {
+  margin-bottom: 20px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--gray-text-muted);
+  margin-bottom: 8px;
+}
+
+#progress-percent {
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background-color: var(--bg-surface);
+  box-shadow: var(--neu-in-sm);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--accent-blue);
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  flex: 1;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--bg-surface);
+  color: var(--gray-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--neu-out-sm);
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  color: var(--gray-text-dark);
+}
+
+.filter-btn.active {
+  box-shadow: var(--neu-in-sm);
+  color: var(--accent-blue);
+}
+
+/* Daftar Tugas */
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background-color: var(--bg-surface);
+  box-shadow: var(--neu-out-sm);
+  transition: transform 0.15s ease;
+}
+
+.todo-item.selesai .teks {
+  text-decoration: line-through;
+  color: var(--gray-text-muted);
+}
+
+/* Custom Checkbox Neumorphism */
+.todo-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background-color: var(--bg-surface);
+  box-shadow: var(--neu-in-sm);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todo-checkbox:checked {
+  background-color: var(--accent-blue);
+  box-shadow: 2px 2px 6px rgba(0, 136, 255, 0.35);
+}
+
+.todo-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--white-pure);
+  border-width: 0 2.2px 2.2px 0;
+  transform: rotate(45deg);
+}
+
+/* Teks & Input Edit */
+.teks {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--bg-surface);
+  box-shadow: var(--neu-in-sm);
+  color: var(--gray-text-dark);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+/* Tombol Aksi Item */
+.item-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-action {
+  padding: 6px 11px;
+  border: none;
+  border-radius: 9px;
+  background-color: var(--bg-surface);
+  box-shadow: var(--neu-out-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--gray-text-muted);
+  transition: all 0.15s ease;
+}
+
+.btn-action:active {
+  box-shadow: var(--neu-in-sm);
+}
+
+.btn-edit:hover,
+.btn-simpan {
+  color: var(--accent-blue);
+}
+
+.btn-hapus:hover {
+  color: var(--danger-text);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 28px 16px;
+  border-radius: 16px;
+  color: var(--gray-text-muted);
+  font-size: 0.9rem;
+  box-shadow: var(--neu-in-sm);
+}
+
+/* Responsif Mobile */
+@media (max-width: 480px) {
+  .app {
+    padding: 24px 18px;
+  }
+
+  .todo-form {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
